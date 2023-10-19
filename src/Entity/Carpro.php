@@ -24,21 +24,17 @@ class Carpro
 
     
 
-    #[ORM\OneToMany(mappedBy: 'carpro', targetEntity: Cart::class)]
-    private Collection $carpro;
+    
 
     #[ORM\ManyToOne(inversedBy: 'prod')]
     private ?Products $products = null;
 
+    #[ORM\ManyToOne(inversedBy: 'cart')]
+    private ?Cart $cart = null;
+
     
 
-    public function __construct()
-    {
-       
-        
-        $this->carpro = new ArrayCollection();
-        
-    }
+    
 
     public function getId(): ?int
     {
@@ -72,32 +68,7 @@ class Carpro
 
     
     
-    public function getCarpro(): Collection
-    {
-        return $this->carpro;
-    }
-
-    public function addCarpro(Cart $carpro): static
-    {
-        if (!$this->carpro->contains($carpro)) {
-            $this->carpro->add($carpro);
-            $carpro->setCarproId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCarpro(Cart $carpro): static
-    {
-        if ($this->carpro->removeElement($carpro)) {
-            // set the owning side to null (unless already changed)
-            if ($carpro->getCarproId() === $this) {
-                $carpro->setCarproId(null);
-            }
-        }
-
-        return $this;
-    }
+    
 
     public function getProducts(): ?Products
     {
@@ -107,6 +78,18 @@ class Carpro
     public function setProducts(?Products $products): static
     {
         $this->products = $products;
+
+        return $this;
+    }
+
+    public function getCart(): ?Cart
+    {
+        return $this->cart;
+    }
+
+    public function setCart(?Cart $cart): static
+    {
+        $this->cart = $cart;
 
         return $this;
     }

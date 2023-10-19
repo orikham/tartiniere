@@ -3,8 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\CartRepository;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CartRepository::class)]
@@ -17,12 +18,19 @@ class Cart
 
     #[ORM\ManyToOne(inversedBy: 'carts')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Users $id_user = null;
+    private ?Users $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'cart', targetEntity: Carpro::class)]
+    private Collection $cart;
+
+    public function __construct()
+    {
+        $this->cart = new ArrayCollection();
+    }
 
     
 
-    #[ORM\ManyToOne(inversedBy: 'carpro')]
-    private ?Carpro $carpro = null;
+    
 
     
 
@@ -33,12 +41,12 @@ class Cart
 
     public function getIdUser(): ?Users
     {
-        return $this->id_user;
+        return $this->user;
     }
 
-    public function setIdUser(?Users $id_user): static
+    public function setIdUser(?Users $user): static
     {
-        $this->id_user = $id_user;
+        $this->user = $user;
 
         return $this;
     }
@@ -50,15 +58,46 @@ class Cart
 
    
 
-    public function getCarproId(): ?Carpro
+    
+
+    
+
+    /**
+     * @return Collection<int, Carpro>
+     */
+
+    /**
+     * @return Collection<int, Carpro>
+     */
+    public function getCart(): Collection
     {
-        return $this->carpro;
+        return $this->cart;
     }
 
-    public function setCarproId(?Carpro $carpro): static
+    public function addCart(Carpro $cart): static
     {
-        $this->carpro = $carpro;
+        if (!$this->cart->contains($cart)) {
+            $this->cart->add($cart);
+            $cart->setCart($this);
+        }
 
         return $this;
     }
+
+    public function removeCart(Carpro $cart): static
+    {
+        if ($this->cart->removeElement($cart)) {
+            // set the owning side to null (unless already changed)
+            if ($cart->getCart() === $this) {
+                $cart->setCart(null);
+            }
+        }
+
+        return $this;
+    }
+    
+
+    
+
+    
 }
