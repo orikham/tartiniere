@@ -1,0 +1,137 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "Craie";
+  src: url(../font/KAZYcraie.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.row-limit-size {
+  max-width: 1400px;
+  width: 100%;
+  margin: 50px auto;
+}
+
+body {
+  background-image: url("../img/fond.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/***********partie header**********/
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+header > #menus > ul > li {
+  width: 200px;
+  height: 50px;
+  background-color: #494748;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1px;
+  list-style-type: none;
+}
+header > #menus > ul > li > a {
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  font-family: "Craie";
+}
+header > #logo-lien-accueil-contnair > #contnair-logo {
+  position: relative;
+  /* Le conteneur doit avoir une position relative */
+}
+header > #logo-lien-accueil-contnair > #contnair-logo > #Fond {
+  width: 300px;
+  height: 250px;
+  position: relative;
+  /* Gardez la position relative pour le fond si nécessaire */
+  z-index: 1;
+  /* Fond est en dessous de Logo */
+}
+header > #logo-lien-accueil-contnair > #contnair-logo > #Logo {
+  width: 300px;
+  height: 250px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  /* Logo est au-dessus du Fond */
+}
+header > #infos-pratique {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  opacity: 90%;
+  background-color: #494748;
+}
+header > #infos-pratique > li {
+  height: 90px;
+  color: white;
+  list-style-type: none;
+  border: 1px solid white;
+  padding-top: 15px;
+  padding-left: 5px;
+  margin: bottom 1px;
+  font-family: "Craie";
+}
+header > #infos-pratique > li > p {
+  color: white;
+  padding: 15px;
+  font-family: "Craie";
+}
+
+/***********partie footer**********/
+footer {
+  display: flex;
+  background-color: #494748;
+}
+footer > a {
+  color: white;
+}
+footer > p {
+  color: white;
+}
+
+/***********partie homepage**********/
+section {
+  display: flex;
+  justify-content: space-evenly;
+}
+section > div {
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  background-color: #494748;
+  opacity: 85%;
+}
+section > div > h3 {
+  width: 300px;
+  text-align: center;
+  color: white;
+  font-family: "Craie";
+}
+section > div > ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+section > div > ul > li {
+  text-align: center;
+  padding: 15px;
+  color: white;
+  font-family: "Craie";
+}
+section > div > p {
+  color: white;
+  font-family: "Craie";
+}/*# sourceMappingURL=style.css.map */

@@ -54,7 +54,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->carts = new ArrayCollection();
     }
 
-    
+
 
     public function getId(): ?int
     {
